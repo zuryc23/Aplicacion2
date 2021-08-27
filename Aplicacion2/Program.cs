@@ -13,38 +13,69 @@ namespace Aplicacion2
         {
             string direccion = "Aplicacion2.txt";
             string linea = "";
-            /*
-            Console.Write("Escriba un texto: ");
-            linea = Console.ReadLine();
-            EscribirArchivo(direccion, linea);
-            */
-            LeerArchivo(direccion);
+            char op ='n';
+            int opcion = 0;
+
+              while (op != 'n')
+              {
+                Console.WriteLine("1.- Nombre\n2.Leer archivo\n3.- Salir");
+                Console.Write("Opcion: ");
+                opcion = int.Parse(Console.ReadLine());
+
+                if (opcion == 1)
+                {
+                      Console.Write("Nombre del archivo: " + EscribirArchivo(direccion,linea));
+                      linea=Console.ReadLine();
+                }
+
+                else if (opcion == 2)
+                {
+                      Console.WriteLine("Escriba un texto: " + LeerArchivo(direccion));
+                      linea=Console.ReadLine();
+                }
+
+                else if (opcion == 3)
+                {
+                    Console.Write("Desea Salir[s/n]");
+                    op = char.Parse(Console.ReadLine());
+                }
+
+              }
+
+         
             Console.ReadKey();
         }
 
-        static void EscribirArchivo(string ruta, string dato)
-        {
-            StreamWriter ar;
-            ar = File.AppendText(ruta);
-            ar.WriteLine(dato);
-            ar.Close();
-        }
+         static void EscribirArchivo(string ruta, string dato)
+         {
+                
+            StreamWriter arE;
+            arE = File.AppendText(ruta);
+            arE.WriteLine(dato);
+            arE.WriteLine(Console.ReadLine());
+            arE.Close();      
+                
+         }
 
         static void LeerArchivo(string ruta)
         {
-            StreamReader ar;
+            StreamReader arl;
             string linea = "";
-            ar = File.OpenText(ruta);
+            arl = File.OpenText(ruta);
 
-            linea = ar.ReadLine();
+            linea = arl.ReadLine();
             while (linea != null)
             {
                 Console.WriteLine(linea);
-                linea = ar.ReadLine();
+                linea = arl.ReadLine();
             }
 
-            ar.Close();
-
+            arl.Close();
         }
-    }
-}
+
+        
+
+
+    }       
+
+}      
