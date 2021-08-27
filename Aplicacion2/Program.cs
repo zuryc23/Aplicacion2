@@ -24,15 +24,17 @@ namespace Aplicacion2
 
                 if (opcion == 1)
                 {
-                      Console.Write("Nombre del archivo: " + EscribirArchivo(direccion,linea));
+                      Console.Write("Ingrese el nombre del archivo: ");
                       linea=Console.ReadLine();
                 }
 
+
                 else if (opcion == 2)
                 {
-                      Console.WriteLine("Escriba un texto: " + LeerArchivo(direccion));
+                      Console.WriteLine("Escriba un texto: ");
                       linea=Console.ReadLine();
                 }
+
 
                 else if (opcion == 3)
                 {
@@ -42,7 +44,8 @@ namespace Aplicacion2
 
               }
 
-         
+            EscribirArchivo(direccion,linea)
+            LeerArchivo(direccion)
             Console.ReadKey();
         }
 
@@ -52,7 +55,7 @@ namespace Aplicacion2
             StreamWriter arE;
             arE = File.AppendText(ruta);
             arE.WriteLine(dato);
-            arE.WriteLine(Console.ReadLine());
+            arE.WriteLine(Console.ReadLine()+".txt");
             arE.Close();      
                 
          }
