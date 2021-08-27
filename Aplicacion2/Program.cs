@@ -16,64 +16,95 @@ namespace Aplicacion2
             char op ='n';
             int opcion = 0;
 
-              while (op != 'n')
-              {
-                Console.WriteLine("1.- Nombre\n2.Leer archivo\n3.- Salir");
-                Console.Write("Opcion: ");
-                opcion = int.Parse(Console.ReadLine());
-
-                if (opcion == 1)
-                {
-                      Console.Write("Ingrese el nombre del archivo: ");
-                      linea=Console.ReadLine();
-                }
-
-
-                else if (opcion == 2)
-                {
-                      Console.WriteLine("Escriba un texto: ");
-                      linea=Console.ReadLine();
-                }
-
-
-                else if (opcion == 3)
-                {
-                    Console.Write("Desea Salir[s/n]");
-                    op = char.Parse(Console.ReadLine());
-                }
-
-              }
-
+            NombreArchivo();
             EscribirArchivo(direccion,linea)
             LeerArchivo(direccion)
+            SalidArchivo();
             Console.ReadKey();
         }
 
-         static void EscribirArchivo(string ruta, string dato)
+        static void NombreArchivo(char op='n', int opcio=0)
+        {
+            StreamWriter arE;
+            while(op!='s')
+            {
+                Console.WriteLine("1.Nombre");
+                Console.Write("Opcion: ");
+                opcion=int.Parse(Console.ReadLine());
+            }
+
+            if(opcion==1)
+            {
+                Console.Write("Ingrese Nombre de archivo: ");
+                arE = File.AppendText(Console.ReadLine()+".txt");
+            }
+            
+            arE.Close();
+            
+        }
+
+         static void EscribirArchivo(string direccion, string dato, char op='n', int opcion = 0)
          {
                 
             StreamWriter arE;
-            arE = File.AppendText(ruta);
-            arE.WriteLine(dato);
-            arE.WriteLine(Console.ReadLine()+".txt");
+              while(op!='s')
+              {
+                Console.WriteLine("2.Escribir");
+                Console.Write("Opcion: ");
+                opcion=int.Parse(Console.ReadLine());
+              }
+
+              else if(opcion==2)
+              {
+                arE = File.AppendText(direccion);
+                arE.WriteLine("Escriba un texto: "+ dato);
+                arE.WriteLine(Console.ReadLine());
+              }
+            
             arE.Close();      
                 
          }
 
-        static void LeerArchivo(string ruta)
+        static void LeerArchivo(string direccion, char op='n', int opcion=0)
         {
             StreamReader arl;
-            string linea = "";
-            arl = File.OpenText(ruta);
-
-            linea = arl.ReadLine();
-            while (linea != null)
+            while(op!='s')
             {
+                Console.WriteLine("3.Leer");
+                Console.Write("Opcion: ");
+                opcion=int.Parse(Console.ReadLine());
+            }
+
+            else if(opcion==3)
+            {
+                string linea = "";
+                arl = File.OpenText(direccion);
+
+                linea = arl.ReadLine();
+                while (linea != null)
+                {
                 Console.WriteLine(linea);
                 linea = arl.ReadLine();
+                }
             }
 
             arl.Close();
+        }
+
+        static void SalidArchivo(char op='n', int opcion=0)
+        {
+            while(op!='s')
+            {
+                Console.WriteLine("4.Salir");
+                Console.Write("Opcion: ");
+                opcion=int.Parse(Console.ReadLine());
+            }
+
+            else if(opcion==4)
+            {
+                Console.Write("Desea salir[s/n]")
+                op=char.Parse(Console.ReadLine());
+            }
         }
 
         
